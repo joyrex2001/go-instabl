@@ -7,4 +7,16 @@ package is considered stable, and changes to this package may have significant
 impact on other packages. When the value is closer to 1, the package is more
 resilient to changes, as it is less coupled to other packages.
 
+Install with:
+```
+go get github.com/joyrex2001/go-instabl
+```
+
+And check analyze your repo with
+```
+go-instabl src/github.com/meand/myrepo
+```
+
+
+
 See also: https://en.wikipedia.org/wiki/Software_package_metrics
