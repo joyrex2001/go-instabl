@@ -14,7 +14,7 @@ import (
 // main will take you to the bat-mobile and yell "let's go!"
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "usage:\n\t%s <repository>\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s <repository>\n", os.Args[0])
 		os.Exit(1)
 	}
 
@@ -96,6 +96,7 @@ func (a *Analyzer) GetStats() Stats {
 // file using the analyzeFile method. It will skip the vendor folder if
 // present.
 func (a *Analyzer) analyzeDir(dirname string) {
+	dirname = dirname + string(os.PathSeparator)
 	filepath.Walk(dirname, func(path string, info os.FileInfo, err error) error {
 		if err == nil && !info.IsDir() && !a.isVendor(path) && strings.HasSuffix(path, ".go") {
 			a.analyzeFile(path)
@@ -155,7 +156,7 @@ func getPackage(fname string) string {
 		log.Fatal(err)
 	}
 	file := filepath.ToSlash(filepath.Clean(filepath.Join(cwd, ".", fname)))
-	root := filepath.ToSlash(filepath.Clean(os.Getenv("GOPATH") + "src"))
-	dir := filepath.Dir(strings.Replace(file, root+"/", "", -1))
+	root := filepath.ToSlash(filepath.Clean(filepath.Join(os.Getenv("GOPATH"), "src")))
+	dir := filepath.ToSlash(filepath.Dir(strings.Replace(file, root+"/", "", -1)))
 	return dir
 }

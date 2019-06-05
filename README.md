@@ -12,11 +12,9 @@ Install with:
 go get github.com/joyrex2001/go-instabl
 ```
 
-And check analyze your repo with
+And check analyze your repo with:
 ```
 go-instabl src/github.com/meand/myrepo
 ```
-
-
 
 See also: https://en.wikipedia.org/wiki/Software_package_metrics
